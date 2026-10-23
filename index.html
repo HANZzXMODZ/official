@@ -12,76 +12,129 @@
         /* CANVAS BINTANG JATUH */
         #starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-        /* WELCOME SCREEN */
-        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: opacity 1s ease, visibility 1s; }
+        /* --- INTRO HACKER MERAH --- */
+        #welcome-screen { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
+            background: #050000; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; z-index: 9999; 
+            transition: opacity 1s ease, visibility 1s; 
+        }
         #welcome-screen.hidden { opacity: 0; visibility: hidden; }
-        .welcome-text { font-size: 2.2rem; color: #00ffcc; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc; white-space: nowrap; overflow: hidden; border-right: 4px solid #00ffcc; animation: typing 2s steps(20, end), blink 0.75s step-end infinite; }
-        .welcome-sub { margin-top: 15px; font-size: 0.9rem; color: #a855f7; letter-spacing: 3px; opacity: 0; animation: fadeIn 2s 2s forwards; text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; }
+        
+        .welcome-text { 
+            font-size: 2.5rem; color: #ff0033; text-transform: uppercase; 
+            letter-spacing: 8px; font-weight: bold;
+            text-shadow: 0 0 10px #ff0033, 0 0 30px #ff0033, 0 0 50px #ff0000; 
+            white-space: nowrap; overflow: hidden; 
+            border-right: 3px solid #ff0033; 
+            animation: typing 2s steps(10, end), blink 0.75s step-end infinite; 
+        }
+        .welcome-sub { 
+            margin-top: 20px; font-size: 0.9rem; color: #ff6666; 
+            letter-spacing: 5px; opacity: 0; animation: fadeIn 2s 2s forwards; 
+        }
+        
         @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #00ffcc } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #ff0033 } }
         @keyframes fadeIn { to { opacity: 1 } }
 
         /* MAIN CONTENT */
-        #main-content { display: none; min-height: 100vh; position: relative; z-index: 1; padding-bottom: 50px; }
+        #main-content { display: none; min-height: 100vh; position: relative; z-index: 1; padding-bottom: 0; }
         #main-content.show { display: block; animation: fadeIn 1.5s ease; }
 
         /* Header */
-        header { padding: 20px; border-bottom: 1px solid rgba(0, 255, 204, 0.2); display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); }
-        .brand { font-size: 1.5rem; font-weight: bold; color: #fff; text-shadow: 0 0 10px #fff; }
+        header { 
+            padding: 15px 20px; border-bottom: 1px solid rgba(0, 255, 204, 0.2); 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); 
+            position: sticky; top: 0; z-index: 100; 
+        }
+        .brand { font-size: 1.4rem; font-weight: bold; color: #fff; text-shadow: 0 0 10px #fff; }
         .brand span { color: #00ffcc; text-shadow: 0 0 15px #00ffcc; }
-        .status { font-size: 0.8rem; color: #00ffcc; display: flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ffcc; font-weight: bold; }
-        .status::before { content: ''; width: 10px; height: 10px; background: #00ffcc; border-radius: 50%; box-shadow: 0 0 15px #00ffcc; animation: blink 1s infinite; }
+        .status { 
+            font-size: 0.75rem; color: #00ffcc; display: flex; align-items: center; gap: 6px; 
+            text-shadow: 0 0 10px #00ffcc; font-weight: bold;
+        }
+        .status::before { 
+            content: ''; width: 8px; height: 8px; background: #00ffcc; 
+            border-radius: 50%; box-shadow: 0 0 10px #00ffcc; animation: blink 1s infinite; 
+        }
 
         /* Hero Banner */
-        .hero { padding: 60px 20px; text-align: center; border-bottom: 1px solid rgba(0, 255, 204, 0.1); }
-        .hero h1 { font-size: 2.2rem; margin-bottom: 15px; letter-spacing: 2px; }
-        .hero h1 span { color: #00ffcc; text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc; }
-        .hero p { color: #cbd5e1; font-size: 0.95rem; max-width: 450px; margin: 0 auto; line-height: 1.8; text-shadow: 1px 1px 3px #000; }
+        .hero { padding: 40px 20px; text-align: center; border-bottom: 1px solid rgba(0, 255, 204, 0.1); }
+        .hero h1 { font-size: 2rem; margin-bottom: 10px; letter-spacing: 1px; }
+        .hero h1 span { color: #00ffcc; text-shadow: 0 0 20px #00ffcc; }
+        .hero p { color: #cbd5e1; font-size: 0.9rem; max-width: 400px; margin: 0 auto; line-height: 1.6; }
 
         /* File List Section */
-        .section-title { padding: 15px 20px; font-size: 1.1rem; margin: 40px 20px 20px 20px; border-left: 4px solid #a855f7; background: rgba(20, 20, 30, 0.6); box-shadow: -5px 0 20px -5px #a855f7; color: #fff; text-shadow: 0 0 10px #a855f7; border-radius: 0 10px 10px 0; backdrop-filter: blur(10px); border-top: 1px solid rgba(168, 85, 247, 0.2); border-right: 1px solid rgba(168, 85, 247, 0.2); border-bottom: 1px solid rgba(168, 85, 247, 0.2); }
-        .file-grid { padding: 0 20px 40px 20px; display: grid; grid-template-columns: 1fr; gap: 20px; }
-
-        /* CARD FILE */
-        .file-card { background: rgba(15, 20, 30, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: all 0.4s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
-        .file-card:hover { border-color: rgba(0, 255, 204, 0.5); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 255, 204, 0.1); }
+        .section-title { 
+            padding: 12px 15px; font-size: 1rem; margin: 30px 20px 15px 20px; 
+            border-left: 3px solid #a855f7; background: rgba(20, 20, 30, 0.7);
+            color: #fff; text-shadow: 0 0 10px #a855f7; border-radius: 0 8px 8px 0; 
+            backdrop-filter: blur(10px); border: 1px solid rgba(168, 85, 247, 0.2);
+        }
         
-        /* GAMBAR CARD */
-        .file-img { width: 100%; height: 160px; background: #111; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.05); }
-        .file-img img { width: 100%; height: 100%; object-fit: contain; background: #222; } /* Pake contain biar gambar gak kepotong */
+        /* GRID FILE (Dibikin 2 Kolom biar kecil) */
+        .file-grid { padding: 0 20px 40px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-        .file-header { display: flex; justify-content: space-between; align-items: center; }
-        .file-name { font-size: 1.1rem; font-weight: bold; color: #fff; text-shadow: 0 0 8px #fff; }
-        .file-tag { font-size: 0.7rem; background: rgba(168, 85, 247, 0.2); color: #e9d5ff; padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.5); }
-        .file-desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; }
-        .file-meta { display: flex; gap: 15px; font-size: 0.75rem; color: #64748b; margin-top: 5px; }
+        /* CARD FILE KECIL */
+        .file-card { 
+            background: rgba(15, 20, 30, 0.8); backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; 
+            padding: 10px; display: flex; flex-direction: column; gap: 8px; 
+            transition: all 0.3s ease; 
+        }
+        .file-card:hover { border-color: rgba(0, 255, 204, 0.5); transform: translateY(-3px); }
         
-        /* Tombol Download */
-        .btn-dl { display: block; text-align: center; text-decoration: none; background: transparent; color: #00ffcc; font-weight: 900; padding: 12px; border-radius: 10px; font-size: 0.9rem; margin-top: 10px; transition: 0.3s; text-transform: uppercase; letter-spacing: 2px; border: 2px solid #00ffcc; position: relative; overflow: hidden; z-index: 1; }
-        .btn-dl::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: #00ffcc; transition: 0.3s; z-index: -1; }
-        .btn-dl:hover { color: #000; box-shadow: 0 0 20px #00ffcc; }
-        .btn-dl:hover::before { left: 0; }
+        /* GAMBAR KECIL */
+        .file-img { width: 100%; height: 80px; background: #151e2d; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .file-img img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
+
+        .file-header { display: flex; flex-direction: column; gap: 3px; }
+        .file-name { font-size: 0.85rem; font-weight: bold; color: #fff; text-shadow: 0 0 5px #fff; line-height: 1.2; }
+        .file-tag { font-size: 0.55rem; background: rgba(168, 85, 247, 0.2); color: #e9d5ff; padding: 2px 5px; border-radius: 4px; border: 1px solid rgba(168, 85, 247, 0.5); width: fit-content; }
+        
+        .file-desc { font-size: 0.65rem; color: #94a3b8; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .file-meta { display: flex; justify-content: space-between; font-size: 0.6rem; color: #64748b; }
+        
+        /* Tombol Download Kecil */
+        .btn-dl { 
+            display: block; text-align: center; text-decoration: none; 
+            background: transparent; color: #00ffcc; font-weight: bold; 
+            padding: 8px; border-radius: 6px; font-size: 0.7rem; margin-top: auto; 
+            border: 1px solid #00ffcc; transition: 0.2s;
+        }
+        .btn-dl:hover { background: #00ffcc; color: #000; box-shadow: 0 0 10px #00ffcc; }
+
+        /* --- FOOTER OFFICIAL --- */
+        footer {
+            text-align: center; padding: 30px 20px; margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1); color: #64748b; font-size: 0.8rem;
+            background: rgba(0,0,0,0.9);
+        }
+        footer h3 { color: #fff; margin-bottom: 5px; letter-spacing: 2px; text-shadow: 0 0 10px #fff; }
+        footer span { color: #00ffcc; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <canvas id="starfield"></canvas>
 
-    <!-- WELCOME -->
+    <!-- 1. INTRO HACKER MERAH -->
     <div id="welcome-screen">
-        <div class="welcome-text">HANZz STORE</div>
-        <div class="welcome-sub">Initializing Database...</div>
+        <div class="welcome-text">HANZz</div>
+        <div class="welcome-sub">ENTERING THE MATRIX...</div>
     </div>
 
-    <!-- MAIN -->
+    <!-- 2. MAIN CONTENT -->
     <div id="main-content">
         <header>
             <div class="brand">HANZz<span>_STORE</span></div>
-            <div class="status">SYSTEM ONLINE</div>
+            <div class="status">ONLINE</div>
         </header>
 
         <section class="hero">
-            <h1>Welcome To <span>HANZz STORE</span></h1>
+            <h1>Welcome To <span>HANZz</span></h1>
             <p>Pusat file, mod, dan tools terbaik. Update setiap hari, 100% gratis.</p>
         </section>
 
@@ -89,67 +142,67 @@
 
         <div class="file-grid">
             
-            <!-- ========================================== -->
             <!-- CARD 1: CHATGPT_MODZ -->
-            <!-- ========================================== -->
             <div class="file-card">
                 <div class="file-img">
-                    <!-- Gambar dari GitHub, dijamin muncul -->
+                    <!-- Gambar dari GitHub Devicon (PASTI MUNCUL) -->
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/openai/openai-original.svg" alt="ChatGPT Modz">
                 </div>
                 <div class="file-header">
                     <div class="file-name">CHATGPT_MODZ</div>
                     <div class="file-tag">AI TOOLS</div>
                 </div>
-                <div class="file-desc">Aplikasi ChatGPT versi modifikasi. Unlock semua fitur premium tanpa batas.</div>
+                <div class="file-desc">Aplikasi ChatGPT modifikasi. Unlock fitur premium.</div>
                 <div class="file-meta">
-                    <span>📦 Size: 80 MB</span>
-                    <span>📅 Update: Hari ini</span>
+                    <span>📦 80 MB</span>
+                    <span>📅 Hari ini</span>
                 </div>
-                <a href="https://bicolink.com/NLyRQDXN" class="btn-dl" target="_blank">Download File</a>
+                <a href="https://bicolink.com/NLyRQDXN" class="btn-dl" target="_blank">DOWNLOAD</a>
             </div>
 
-            <!-- ========================================== -->
             <!-- CARD 2: GAME GUARDIAN MODZ -->
-            <!-- ========================================== -->
             <div class="file-card">
                 <div class="file-img">
-                    <!-- Gambar dari Wikimedia, dijamin muncul -->
+                    <!-- Gambar dari Wikimedia (PASTI MUNCUL) -->
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/GameGuardian_Logo.png/480px-GameGuardian_Logo.png" alt="Game Guardian Modz">
                 </div>
                 <div class="file-header">
                     <div class="file-name">GAME GUARDIAN MODZ</div>
                     <div class="file-tag">CHEAT TOOL</div>
                 </div>
-                <div class="file-desc">GameGuardian versi modifikasi. Bebas cheat game tanpa batas.</div>
+                <div class="file-desc">GameGuardian modifikasi. Bebas cheat game.</div>
                 <div class="file-meta">
-                    <span>📦 Size: 23 MB</span>
-                    <span>📅 Update: Hari ini</span>
+                    <span>📦 23 MB</span>
+                    <span>📅 Hari ini</span>
                 </div>
-                <a href="https://bicolink.com/ZS7x6ju" class="btn-dl" target="_blank">Download File</a>
+                <a href="https://bicolink.com/ZS7x6ju" class="btn-dl" target="_blank">DOWNLOAD</a>
             </div>
 
-            <!-- ========================================== -->
             <!-- CARD 3: DUAL SPACE MODZ -->
-            <!-- ========================================== -->
             <div class="file-card">
                 <div class="file-img">
-                    <!-- Gambar dari GitHub, dijamin muncul -->
+                    <!-- Gambar dari Flaticon (PASTI MUNCUL) -->
                     <img src="https://cdn-icons-png.flaticon.com/512/9094/9094983.png" alt="Dual Space Modz">
                 </div>
                 <div class="file-header">
                     <div class="file-name">DUAL SPACE MODZ</div>
                     <div class="file-tag">UTILITY</div>
                 </div>
-                <div class="file-desc">Aplikasi Dual Space Pro Mod. Clone aplikasi tanpa batas.</div>
+                <div class="file-desc">Dual Space Pro Mod. Clone aplikasi.</div>
                 <div class="file-meta">
-                    <span>📦 Size: 63 MB</span>
-                    <span>📅 Update: Hari ini</span>
+                    <span>📦 63 MB</span>
+                    <span>📅 Hari ini</span>
                 </div>
-                <a href="https://bicolink.com/aiy04nIZFI" class="btn-dl" target="_blank">Download File</a>
+                <a href="https://bicolink.com/aiy04nIZFI" class="btn-dl" target="_blank">DOWNLOAD</a>
             </div>
 
         </div>
+
+        <!-- FOOTER OFFICIAL -->
+        <footer>
+            <h3>HANZz <span>OFFICIAL</span></h3>
+            <p>&copy; 2026 HANZz STORE. All Rights Reserved.</p>
+        </footer>
     </div>
 
     <script>
@@ -158,7 +211,7 @@
             setTimeout(() => {
                 document.getElementById('welcome-screen').classList.add('hidden');
                 document.getElementById('main-content').classList.add('show');
-            }, 3000); 
+            }, 3500); // 3.5 detik
         });
 
         // Animasi Bintang
