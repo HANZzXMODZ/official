@@ -7,12 +7,18 @@
     <style>
         /* Base & Fonts */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Courier New', Courier, monospace; }
-        body { background-color: #000000; color: #fff; overflow-x: hidden; min-height: 100vh; position: relative; }
+        
+        /* Body Dibikin Full Tinggi & Flexbox biar Footer nempel di bawah */
+        html, body { height: 100%; }
+        body { 
+            background-color: #000000; color: #fff; overflow-x: hidden; 
+            position: relative; display: flex; flex-direction: column;
+        }
 
-        /* CANVAS MATRIX RAIN (Full Screen) */
+        /* CANVAS MATRIX (Full Layer) */
         #matrix-canvas { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            z-index: -1; opacity: 0.6; /* Efek transparan biar teks tetap kebaca */
+            z-index: -1; opacity: 0.6; 
         }
 
         /* --- INTRO SCREEN --- */
@@ -37,14 +43,13 @@
             letter-spacing: 3px; opacity: 0; animation: fadeIn 2s 2s forwards; 
             text-shadow: 0 0 10px #a855f7;
         }
-        
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: #00ffcc } }
         @keyframes fadeIn { to { opacity: 1 } }
 
-        /* MAIN CONTENT */
-        #main-content { display: none; min-height: 100vh; position: relative; z-index: 1; padding-bottom: 0; }
-        #main-content.show { display: block; animation: fadeIn 1.5s ease; }
+        /* MAIN CONTENT (flex-grow biar ngisi sisa layar) */
+        #main-content { display: none; flex: 1 0 auto; position: relative; z-index: 1; }
+        #main-content.show { display: flex; flex-direction: column; animation: fadeIn 1.5s ease; }
 
         /* Header */
         header { 
@@ -110,14 +115,18 @@
         }
         .btn-dl:hover { background: #00ffcc; color: #000; box-shadow: 0 0 10px #00ffcc; }
 
-        /* FOOTER */
+        /* --- FOOTER FULL LAYER (Nempel di dasar layar) --- */
         footer {
-            text-align: center; padding: 30px 20px; margin-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1); color: #64748b; font-size: 0.8rem;
-            background: rgba(0,0,0,0.9);
+            flex-shrink: 0; /* Biar gak mengecil */
+            text-align: center; padding: 25px 20px; margin-top: auto; 
+            border-top: 1px solid rgba(0, 255, 204, 0.2); 
+            background: rgba(0, 0, 0, 0.9); /* Dibikin agak gelap biar teks kebaca */
+            backdrop-filter: blur(5px);
         }
-        footer h3 { color: #fff; margin-bottom: 5px; letter-spacing: 2px; text-shadow: 0 0 10px #fff; }
-        footer span { color: #00ffcc; font-weight: bold; }
+        footer h3 { color: #00ffcc; font-size: 1.2rem; margin-bottom: 8px; text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; letter-spacing: 2px; }
+        footer h3 span { color: #fff; text-shadow: 0 0 10px #fff; }
+        footer p { color: #64748b; font-size: 0.75rem; letter-spacing: 1px; margin-top: 5px;}
+        footer .secured { color: #a855f7; font-size: 0.7rem; margin-top: 5px; text-shadow: 0 0 5px #a855f7; }
     </style>
 </head>
 <body>
@@ -127,7 +136,6 @@
 
     <!-- 1. INTRO SCREEN -->
     <div id="welcome-screen">
-        <!-- TEKS SUDAH DIGANTI -->
         <div class="welcome-text">Welcome to web HANZz</div>
         <div class="welcome-sub">Initializing Matrix Protocol...</div>
     </div>
@@ -192,9 +200,11 @@
 
         </div>
 
+        <!-- FOOTER OFFICIAL (Nempel Bawah) -->
         <footer>
             <h3>HANZz <span>OFFICIAL</span></h3>
             <p>&copy; 2026 HANZz STORE. All Rights Reserved.</p>
+            <p class="secured">System Secured.</p>
         </footer>
     </div>
 
@@ -204,57 +214,45 @@
             setTimeout(() => {
                 document.getElementById('welcome-screen').classList.add('hidden');
                 document.getElementById('main-content').classList.add('show');
-            }, 3500); // 3.5 detik
+            }, 3500); 
         });
 
-        // --- 2. LOGIKA MATRIX RAIN (HUJAN KODE) ---
+        // --- 2. LOGIKA MATRIX RAIN ---
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
 
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
-        // Karakter yang dipake buat hujan kode (huruf, angka, simbol)
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/".split("");
         const fontSize = 14;
         let columns = width / fontSize;
         let drops = [];
 
-        // Inisialisasi posisi awal tiap kolom
         for (let x = 0; x < columns; x++) {
             drops[x] = 1; 
         }
 
         function drawMatrix() {
-            // Efek fade (biar ada ekor/jejak)
             ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
             ctx.fillRect(0, 0, width, height);
 
-            // Warna teks (hijau neon)
             ctx.fillStyle = "#00ffcc"; 
             ctx.font = fontSize + "px monospace";
 
             for (let i = 0; i < drops.length; i++) {
-                // Pilih karakter random
                 const text = chars[Math.floor(Math.random() * chars.length)];
-                
-                // Gambar karakter
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-                // Randomize reset (biar gak turun barengan)
                 if (drops[i] * fontSize > height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
-
-                // Turunin posisi
                 drops[i]++;
             }
         }
 
-        // Jalanin animasi tiap 30ms
         setInterval(drawMatrix, 35);
 
-        // Handle resize layar
         window.addEventListener('resize', () => {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
